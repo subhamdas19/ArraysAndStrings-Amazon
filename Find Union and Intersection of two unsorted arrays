@@ -1,0 +1,80 @@
+Sets are a type of associative containers in which each element has to be unique, because the value of the element identifies it. The value of the element cannot be modified once it is added to the set, though it is possible to remove and add the modified value of that element.
+
+
+Method 4 (Use Hashing)
+Union
+1. Initialize an empty hash set hs.
+2. Iterate through the first array and put every element of the first array in the set S.
+3. Repeat the process for the second array.
+4. Print the set hs.
+Intersection
+1. Initialize an empty set hs.
+2. Iterate through the first array and put every element of the first array in the set S.
+3. For every element x of the second array, do the following :
+Search x in the set hs. If x is present, then print it.
+
+Time complexity of this method is Θ(m+n) under the assumption that hash table search and insert operations take Θ(1) time.
+
+// CPP program to find union and intersection 
+// using sets 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// Prints union of arr1[0..n1-1] and arr2[0..n2-1] 
+void printUnion(int arr1[], int arr2[], int n1, int n2) 
+{ 
+    set<int> hs; 
+  
+    // Inhsert the elements of arr1[] to set hs 
+    for (int i = 0; i < n1; i++) 
+        hs.insert(arr1[i]); 
+  
+    // Insert the elements of arr2[] to set hs 
+    for (int i = 0; i < n2; i++) 
+        hs.insert(arr2[i]); 
+  
+    // Print the content of set hs 
+    for (auto it = hs.begin(); it != hs.end(); it++) 
+        cout << *it << " "; 
+    cout << endl; 
+} 
+  
+// Prints intersection of arr1[0..n1-1] and 
+// arr2[0..n2-1] 
+void printIntersection(int arr1[], int arr2[], 
+                               int n1, int n2) 
+{ 
+    set<int> hs; 
+  
+    // Insert the elements of arr1[] to set S 
+    for (int i = 0; i < n1; i++) 
+        hs.insert(arr1[i]); 
+  
+    for (int i = 0; i < n2; i++) 
+  
+        // If element is present in set then 
+        // push it to vector V 
+        if (hs.find(arr2[i]) != hs.end()) 
+            cout << arr2[i] << " "; 
+} 
+  
+// Driver Program 
+int main() 
+{ 
+    int arr1[] = { 7, 1, 5, 2, 3, 6 }; 
+    int arr2[] = { 3, 8, 6, 20, 7 }; 
+    int n1 = sizeof(arr1) / sizeof(arr1[0]); 
+    int n2 = sizeof(arr2) / sizeof(arr2[0]); 
+    printUnion(arr1, arr2, n1, n2); 
+    printIntersection(arr1, arr2, n1, n2); 
+  
+    return 0; 
+} 
+
+This method is contributed by Ankur Singh.
+Output:
+
+Union of two arrays is : 
+[1, 2, 3, 20, 5, 6, 7, 8]
+Intersection of two arrays is : 
+3 6 7 
