@@ -1,0 +1,36 @@
+#include<bits/stdc++.h> 
+using namespace std; 
+  
+    // Function that calculates maximum sum 
+    // of products of two arrays 
+    int maximumSOP(int *a, int *b) 
+    { 
+        // Variable to store the sum of 
+        // products of array elements 
+        int sop = 0; 
+  
+        // length of the arrays 
+        int n = sizeof(a)/sizeof(a[0]);  
+  
+        // Sorting both the arrays 
+        sort(a,a+n+1); 
+        sort(b,b+n+1); 
+  
+        // Traversing both the arrays 
+        // and calculating sum of product 
+        for (int i = 0; i <=n; i++) { 
+            sop += a[i] * b[i]; 
+        } 
+  
+        return sop; 
+    } 
+  
+    // Driver code 
+    int main() 
+    { 
+        int A[] = { 1, 2, 3 }; 
+        int B[] = { 4, 5, 1 }; 
+  
+        cout<<maximumSOP(A, B); 
+        return 0; 
+    } 
