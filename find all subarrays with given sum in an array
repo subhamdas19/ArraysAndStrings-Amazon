@@ -1,0 +1,64 @@
+
+This soln is from techie delight
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+ 
+// Function to print all sub-arrays with given sum ending at given index
+void printSubarray(int arr[], int index, vector<int> vec)
+{
+    for (int &j: vec)
+    {
+        cout << "[" << (j + 1) << ".." << index << "] -- { ";
+        copy(arr + j + 1, arr + index + 1,
+                ostream_iterator<int>(cout, " "));
+        cout << "}\n";
+    }
+}
+ 
+// Function to find subarrays with given sum in an array
+void findSubarrays(int arr[], int n, int sum)
+{
+    // create an empty map of vectors for storing end index of all
+    // subarrays with sum of elements so far
+    unordered_map<int, vector<int>> map;
+ 
+    // To handle the case when the subarray with given sum starts
+    // from 0th index
+    map[0].push_back(-1);
+ 
+    int sum_so_far = 0;
+ 
+    // traverse the given array
+    for (int index = 0; index < n; index++)
+    {
+        // sum of elements so far
+        sum_so_far += arr[index];
+ 
+        // check if there exists at-least one sub-array with given sum
+        auto itr = map.find(sum_so_far - sum);
+        if (itr != map.end())
+        {
+            // print all sub-arrays with given sum
+            printSubarray(arr, index, map[itr->first]);
+        }
+ 
+        // insert (sum so far, current index) pair into the map of vectors
+        map[sum_so_far].push_back(index);
+    }
+}
+ 
+// main function
+int main()
+{
+    int arr[] = { 3, 4, -7, 1, 3, 3, 1, -4 };
+    int sum = 7;
+ 
+    int n = sizeof(arr)/sizeof(arr[0]);
+    findSubarrays(arr, n, sum);
+ 
+    return 0;
+}
