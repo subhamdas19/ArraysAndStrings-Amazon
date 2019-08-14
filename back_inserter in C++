@@ -1,0 +1,64 @@
+std::back_inserter returns std::back_insert_iterator that uses Container::push_back().
+std::inserter returns std::insert_iterator that uses  Container::insert().
+td::back_inserter constructs a back-insert iterator that inserts new elements at the end of the container to which it is applied. It is defined inside the header file .
+
+A back-insert iterator is a special type of output iterator designed to allow algorithms that usually overwrite elements (such as copy) to instead insert new elements automatically at the end of the container.
+
+Syntax:
+
+std::back_inserter (Container& x);
+
+x: Container in which new elements will 
+be inserted at the end.
+
+Returns: A back_insert_iterator that inserts 
+elements at the end of container x.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to demonstrate std::back_inserter 
+#include <iostream> 
+#include <iterator> 
+#include <vector> 
+#include <algorithm> 
+using namespace std; 
+int main() 
+{ 
+    // Declaring first container 
+    vector<int> v1 = { 1, 2, 3 }; 
+  
+    // Declaring second container for 
+    // copying values 
+    vector<int> v2 = { 4, 5, 6 }; 
+  
+    // Using std::back_inserter inside std::copy 
+    std::copy(v1.begin(), v1.end(), std::back_inserter(v2)); 
+    // v2 now contains 4 5 6 1 2 3 
+  
+    // Displaying v1 and v2 
+    cout << "v1 = "; 
+  
+    int i; 
+    for (i = 0; i < 3; ++i) { 
+        cout << v1[i] << " "; 
+    } 
+  
+    cout << "\nv2 = "; 
+    for (i = 0; i < 6; ++i) { 
+        cout << v2[i] << " "; 
+    } 
+  
+    return 0; 
+} 
+Output:
+
+v1 = 1 2 3
+v2 = 4 5 6 1 2 3
+
+
+
+
+One of the pitfalls of std::back_inserter is that it can be used with only those containers that have push_back as one of its methods like in case of vector, list and deque.
+push_back() vs back_inserter(): Now, you may be thinking that push_back() and back_inserter are similar, but they are not. When you have to pass an iterator in the algorithm, then you should use back_inserter like in above case, while for normally inserting the values at the end of the container, push_back() can be used.
