@@ -1,0 +1,121 @@
+std::string::compare() in C++
+compare() is a public member function of string class. It compares the value of the string object (or a substring) to the sequence of characters specified by its arguments.
+The compare() can process more than one argument for each string so that one can specify a substring by its index and by its length.
+
+Return type : compare() returns an integer value rather than a Boolean value.
+
+Different Syntaxes for string::compare() :
+
+Syntax 1: Compares the string *this with the string str.
+int string::compare (const string& str) const
+Returns:
+0 : if both strings are equal.
+A value < 0 : if *this is shorter than str or,
+first character that doesn't match is smaller than str.
+A value > 0 : if *this is longer than str or,
+first character that doesn't match is greater
+filter_none
+edit
+play_arrow
+
+brightness_4
+// CPP code for demonstrating  
+// string::compare (const string& str) const 
+  
+#include<iostream> 
+using namespace std; 
+  
+void compareOperation(string s1, string s2) 
+{ 
+    // returns a value < 0 (s1 is smaller then s2) 
+    if((s1.compare(s2)) < 0) 
+        cout << s1 << " is smaller than " << s2 << endl; 
+  
+    // returns 0(s1, is being comapared to itself) 
+    if((s1.compare(s1)) == 0) 
+        cout << s1 << " is equal to " << s1 << endl; 
+    else
+        cout << "Strings didn't match "; 
+      
+} 
+  
+// Driver Code 
+int main() 
+{ 
+    string s1("Geeks"); 
+    string s2("forGeeks"); 
+    compareOperation(s1, s2); 
+      
+    return 0;  
+} 
+Output:
+
+Geeks is smaller than forGeeks
+Geeks is equal to Geeks
+
+
+
+
+// A recursive program to test whether a given  
+// string can be segmented into space separated  
+// words in dictionary 
+#include <iostream> 
+using namespace std; 
+  
+/* A utility function to check whether a word is  
+  present in dictionary or not. An array of strings  
+  is used for dictionary.  Using array of strings for 
+  dictionary is definitely not a good idea. We have  
+  used for simplicity of the program*/
+int dictionaryContains(string word) 
+{ 
+    string dictionary[] = {"mobile","samsung","sam","sung", 
+                            "man","mango","icecream","and", 
+                             "go","i","like","ice","cream"}; 
+    int size = sizeof(dictionary)/sizeof(dictionary[0]); 
+    for (int i = 0; i < size; i++) 
+        if (dictionary[i].compare(word) == 0) 
+           return true; 
+    return false; 
+} 
+  
+// returns true if string can be segmented into space  
+// separated words, otherwise returns false 
+bool wordBreak(string str) 
+{ 
+    int size = str.size(); 
+  
+    // Base case 
+    if (size == 0)  return true; 
+  
+    // Try all prefixes of lengths from 1 to size 
+    for (int i=1; i<=size; i++) 
+    { 
+        // The parameter for dictionaryContains is  
+        // str.substr(0, i) which is prefix (of input  
+        // string) of length 'i'. We first check whether  
+        // current prefix is in  dictionary. Then we  
+        // recursively check for remaining string 
+        // str.substr(i, size-i) which is suffix of   
+        // length size-i 
+        if (dictionaryContains( str.substr(0, i) ) && 
+            wordBreak( str.substr(i, size-i) )) 
+            return true; 
+    } 
+  
+    // If we have tried all prefixes and  
+    // none of them worked 
+    return false; 
+} 
+  
+// Driver program to test above functions 
+int main() 
+{ 
+    wordBreak("ilikesamsung")? cout <<"Yes\n": cout << "No\n"; 
+    wordBreak("iiiiiiii")? cout <<"Yes\n": cout << "No\n"; 
+    wordBreak("")? cout <<"Yes\n": cout << "No\n"; 
+    wordBreak("ilikelikeimangoiii")? cout <<"Yes\n": cout << "No\n"; 
+    wordBreak("samsungandmango")? cout <<"Yes\n": cout << "No\n"; 
+    wordBreak("samsungandmangok")? cout <<"Yes\n": cout << "No\n"; 
+    return 0; 
+} 
