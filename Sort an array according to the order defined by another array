@@ -1,0 +1,71 @@
+https://www.faceprep.in/sort-an-array-according-to-the-order-defined-by-another-array/
+
+
+Input the array 1 and array 2 elements.
+
+Count the frequency of all the elements of array 1 and store it in a map.
+Now, for each element of array 2, check if the element is found in the map.
+If it is present, print the number k times, where k is the frequency of appearance of the element.
+After printing, remove the element from the map.
+After all the array 2 elements have been traversed, sort the remaining elements and print them.
+Program to sort elements according to the order specified by another array using hashing is given below.
+
+C++
+// C++ program to sort an array according to the order specified by another array using hashing
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void customSort(int arr1[], int arr2[], int m, int n)
+{
+// map to store frequency of each element of first array 
+unordered_map<int, int> freq;
+
+for (int i = 0; i < m; i++) 
+freq[arr1[i]]++;
+
+int index = 0;
+// do for every element of second array
+for (int i = 0; i < n; i++) 
+{
+// If current element is present in the map, print it n times 
+while (freq[arr2[i]]) 
+{
+arr1[index++] = arr2[i];
+freq[arr2[i]]–;
+}
+// delete the element from map
+freq.erase(arr2[i]);
+}
+
+// sort the remaining elements present in the map
+int i = index;
+for (auto it = freq.begin(); it != freq.end(); ++it)
+while (it->second–)
+arr1[index++] = (it->first);
+
+// sort the remaining elements
+sort(arr1 + i, arr1 + index);
+}
+
+// main function
+int main()
+{
+int arr1[] = { 1, 2, 3, 4, 3, 1, 2, 5, 7};
+int arr2[] = { 3, 2, 4, 1};
+
+int m = sizeof(arr1) / sizeof(arr1[0]);
+int n = sizeof(arr2) / sizeof(arr2[0]);
+
+customSort(arr1, arr2, m, n);
+
+cout << “After sorting the array is : “;
+for (int i = 0; i < m; i++)
+cout << arr1[i] << ” “;
+cout << endl;
+
+return 0;
+}
+
+
+Time complexity: O(mlogm + n)
