@@ -1,3 +1,12 @@
+We use sliding window strategy for solving this.
+Step 1: Find sum of first k elements in the input array. Initialize maxSum to the calculated sum and maxSumStartIndex = 0.
+Step 2: Add next element to the sum and subtract first element from the sum. Check if this sum is greater than previous sum and update maxSum and maxSumStartIndex.
+Step 3: Keep adding next element to the sum and removing first element from the sum to get sum of current sub array of size k and update maxSum and maxSumStartIndex whenever a greater sum is seen.
+Step 4: Finally print k elements starting from maxSumStartIndex.
+
+https://www.ideserve.co.in/learn/maximum-average-subarray
+
+
 public class MaxAvgSubarray {
  
     private static int getMaxAvgSubarrayStartIndex(int input[], int k)
