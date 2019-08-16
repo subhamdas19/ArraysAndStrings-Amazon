@@ -1,3 +1,8 @@
+Other methods are discussed in https://algorithms.tutorialhorizon.com/find-duplicates-in-an-given-array-in-on-time-and-o1-extra-space/
+Have a look at it.
+
+The below solution is from GeeksForGeeks.
+
 #include <iostream> 
 using namespace std; 
   
