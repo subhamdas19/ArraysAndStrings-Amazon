@@ -1,0 +1,1 @@
+M sized heap: You can build a heap from the array in O(M) time and then extract the top N elements in O(N log M) which when N is small and M is large it's pretty good O(M + N log M)
