@@ -1,0 +1,28 @@
+Evaluation of Expression Tree
+
+
+Refer the NB for theory and i didnt learn the program from geeksforgeeks
+Learn how to convert a string to integer.
+int toInt(string s)  
+{  
+    int num = 0;  
+      
+    // Check if the integral value is  
+    // negative or not 
+    // If it is not negative, generate the number  
+    // normally 
+    if(s[0]!='-') 
+        for (int i=0; i<s.length(); i++)  
+            num = num*10 + (int(s[i])-48);  
+    // If it is negative, calculate the +ve number 
+    // first ignoring the sign and invert the  
+    // sign at the end 
+    else
+        for (int i=1; i<s.length(); i++)  
+        { 
+            num = num*10 + (int(s[i])-48);  
+            num = num*-1; 
+        } 
+      
+    return num;  
+}  
