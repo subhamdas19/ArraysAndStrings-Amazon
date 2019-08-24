@@ -48,3 +48,17 @@ int main()
 
 Output:
 Total cost for connecting ropes is 29
+
+
+Example of priority queue
+
+int main ()
+{
+  int myints[]= {10,60,50,20};
+
+  std::priority_queue<int> first;
+  std::priority_queue<int> second (myints,myints+4);
+  std::priority_queue<int, std::vector<int>, std::greater<int> >
+                            third (myints,myints+4);
+  return 0;
+}
