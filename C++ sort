@@ -1,0 +1,6 @@
+C++ sort function uses introsort which is a hybrid algorithm. Different implementations use different algorithms. The GNU Standard C++ library, for example, uses a 3-part hybrid sorting algorithm: introsort is performed first (introsort itself being a hybrid of quicksort and heap sort) followed by an insertion sort on the result.
+
+The C standard doesn’t talk about its complexity of qsort. The new C++11 standard requires that the complexity of sort to be O(Nlog(N)) in the worst case. Previous versions of C++ such as C++03 allow possible worst case scenario of O(N^2). Only average complexity was required to be O(N log N).
+
+3. Running time:
+STL’s sort ran faster than C’s qsort, because C++’s templates generate optimized code for a particular data type and a particular comparison function.
