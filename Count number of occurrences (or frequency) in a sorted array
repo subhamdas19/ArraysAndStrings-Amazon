@@ -1,0 +1,125 @@
+Method 2 (Better using Binary Search)
+We first find an occurrence using binary search. Then we match toward left and right sides of the matched the found index.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to count occurrences of an element 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// A recursive binary search function. It returns 
+// location of x in given array arr[l..r] is present, 
+// otherwise -1 
+int binarySearch(int arr[], int l, int r, int x) 
+{ 
+    if (r < l) 
+        return -1; 
+  
+    int mid = l + (r - l) / 2; 
+  
+    // If the element is present at the middle 
+    // itself 
+    if (arr[mid] == x) 
+        return mid; 
+  
+    // If element is smaller than mid, then 
+    // it can only be present in left subarray 
+    if (arr[mid] > x) 
+        return binarySearch(arr, l, mid - 1, x); 
+  
+    // Else the element can only be present 
+    // in right subarray 
+    return binarySearch(arr, mid + 1, r, x); 
+} 
+  
+// Returns number of times x occurs in arr[0..n-1] 
+int countOccurrences(int arr[], int n, int x) 
+{ 
+    int ind = binarySearch(arr, 0, n - 1, x); 
+  
+    // If element is not present 
+    if (ind == -1) 
+        return 0; 
+  
+    // Count elements on left side. 
+    int count = 1; 
+    int left = ind - 1; 
+    while (left >= 0 && arr[left] == x) 
+        count++, left--; 
+  
+    // Count elements on right side. 
+    int right = ind + 1; 
+    while (right < n && arr[right] == x) 
+        count++, right++; 
+  
+    return count; 
+} 
+  
+// Driver code 
+int main() 
+{ 
+    int arr[] = { 1, 2, 2, 2, 2, 3, 4, 7, 8, 8 }; 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+    int x = 2; 
+    cout << countOccurrences(arr, n, x); 
+    return 0; 
+}
+
+Output :
+4
+Time Complexity : O(Log n + count) where count is number of occurrences.
+
+ 
+
+Method 3 (Best using Improved Binary Search)
+1) Use Binary search to get index of the first occurrence of x in arr[]. Let the index of the first occurrence be i.
+2) Use Binary search to get index of the last occurrence of x in arr[]. Let the index of the last occurrence be j.
+3) Return (j – i + 1);
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ program to count occurrences of an element 
+// in a sorted array. 
+# include <bits/stdc++.h> 
+using namespace std; 
+  
+/* if x is present in arr[] then returns the count 
+    of occurrences of x, otherwise returns 0. */
+int count(int arr[], int x, int n) 
+{     
+  /* get the index of first occurrence of x */
+  int *low = lower_bound(arr, arr+n, x); 
+  
+  // If element is not present, return 0 
+  if (low == (arr + n) || *low != x) 
+     return 0; 
+     
+  /* Else get the index of last occurrence of x. 
+     Note that we  are only looking in the  
+     subarray after first occurrence */   
+  int *high = upper_bound(low, arr+n, x);      
+     
+  /* return count */
+  return high - low; 
+} 
+  
+/* driver program to test above functions */
+int main() 
+{ 
+  int arr[] = {1, 2, 2, 3, 3, 3, 3}; 
+  int x =  3;  // Element to be counted in arr[] 
+  int n = sizeof(arr)/sizeof(arr[0]); 
+  int c = count(arr, x, n); 
+  printf(" %d occurs %d times ", x, c); 
+  return 0; 
+} 
+
+Output:
+3 occurs 4 times
+Time Complexity: O(Logn)
