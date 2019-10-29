@@ -1,4 +1,15 @@
 Refer the NB for understanding the theory
+
+Approach:
+
+Let x and y be the desired output elements.
+Calculate XOR of all the array elements.
+xor1 = arr[0]^arr[1]^arr[2]…..arr[n-1]
+
+XOR the result with all numbers from 1 to n
+xor1 = xor1^1^2^…..^n
+
+In the result xor1, all elements would nullify each other except x and y. All the bits that are set in xor1 will be set in either x or y. So if we take any set bit (We have chosen the rightmost set bit in code) of xor1 and divide the elements of the array in two sets – one set of elements with same bit set and other set with same bit not set. By doing so, we will get x in one set and y in another set. Now if we do XOR of all the elements in first set, we will get x, and by doing same in other set we will get y..
 Method 5 (Use XOR)
 Approach:
 
