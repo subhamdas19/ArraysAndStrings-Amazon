@@ -32,3 +32,64 @@ int main()
     int max_sum = maxSubArraySum(a, n); 
     return 0;
 }
+// C++ program to print largest contiguous array sum 
+#include<iostream> 
+#include<climits> 
+using namespace std; 
+  
+int maxSubArraySum(int a[], int size) 
+{ 
+    int max_so_far = INT_MIN, max_ending_here = 0; 
+  
+    for (int i = 0; i < size; i++) 
+    { 
+        max_ending_here = max_ending_here + a[i]; 
+        if (max_so_far < max_ending_here) 
+            max_so_far = max_ending_here; 
+  
+        if (max_ending_here < 0) 
+            max_ending_here = 0; 
+    } 
+    return max_so_far; 
+} 
+  
+/*Driver program to test maxSubArraySum*/
+int main() 
+{ 
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3}; 
+    int n = sizeof(a)/sizeof(a[0]); 
+    int max_sum = maxSubArraySum(a, n); 
+    cout << "Maximum contiguous sum is " << max_sum; 
+    return 0; 
+} 
+
+Output:
+Maximum contiguous sum is 7
+
+
+ 
+
+Above program can be optimized further, if we compare max_so_far with max_ending_here only if max_ending_here is greater than 0.
+filter_none
+edit
+play_arrow
+
+brightness_4
+int maxSubArraySum(int a[], int size) 
+{ 
+   int max_so_far = 0, max_ending_here = 0; 
+   for (int i = 0; i < size; i++) 
+   { 
+       max_ending_here = max_ending_here + a[i]; 
+       if (max_ending_here < 0) 
+           max_ending_here = 0; 
+  
+       /* Do not compare for all elements. Compare only    
+          when  max_ending_here > 0 */
+       else if (max_so_far < max_ending_here) 
+           max_so_far = max_ending_here; 
+   } 
+   return max_so_far; 
+} 
+Time Complexity: O(n)
+Algorithmic Paradigm: Dynamic Programming
