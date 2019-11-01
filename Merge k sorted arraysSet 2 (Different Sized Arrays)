@@ -1,5 +1,7 @@
 We can use list and can insert elements in O(N) time and can sort them to maintain a priority queue in O(N logN ) time. Efficient Approach: We can use heaps to implement the priority queue. It will take O(log N) time to insert and delete each element in the priority queue.
 
+
+https://www.youtube.com/watch?v=ptYUCjfNhJY see this video for idea
 #include <bits/stdc++.h> 
 using namespace std; 
   
