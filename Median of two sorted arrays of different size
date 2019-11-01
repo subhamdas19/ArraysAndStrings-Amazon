@@ -1,2 +1,5 @@
 Median of two sorted arrays of different size
 Refer my NB for understanding the theory
+
+https://www.youtube.com/watch?v=LPFhl65R7ww(tushar roy video) here high variable will be length of array input1 x and not x-1 which is usually in binary search
+Code from video
