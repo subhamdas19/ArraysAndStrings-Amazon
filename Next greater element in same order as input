@@ -28,3 +28,9 @@ int main()
     printNGE(arr, n); 
     return 0; 
 } 
+11 -- 13
+13 -- 21
+21 -- -1
+3 -- -1
+Time Complexity: O(n)
+Auxiliary Space: O(n) There is no extra space required if you want to print the next greater of each element in reverse order of input(means first, for the last element and then for second last and so on till the first element)
