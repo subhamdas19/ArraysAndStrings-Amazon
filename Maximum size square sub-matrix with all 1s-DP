@@ -1,6 +1,6 @@
 Note:Plz refer the notebook theory for understanding this program.
 https://www.geeksforgeeks.org/maximum-size-sub-matrix-with-all-1s-in-a-binary-matrix/(geeks for geeks video)
-
+Geeksforgeeks video for this question. 
 #include <bits/stdc++.h> 
 #define bool int  
 #define R 6  
