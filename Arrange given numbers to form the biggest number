@@ -28,3 +28,6 @@ public:
         return ans;
     }
 };
+// Sort the numbers using library sort function. The function uses 
+    // our comparison function myCompare() to compare two strings. 
+    // See http://www.cplusplus.com/reference/algorithm/sort/ for details 
