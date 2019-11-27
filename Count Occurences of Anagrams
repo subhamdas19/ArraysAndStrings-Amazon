@@ -1,4 +1,7 @@
 
+//Dont consider this soln
+Count Occurences of Anagrams - See the geeksforggeks soln the efficient approach which is same find the occurences of anagrams
+
 https://www.includehelp.com/icp/count-occurrences-of-anagrams.aspx
 
 #include <iostream>
