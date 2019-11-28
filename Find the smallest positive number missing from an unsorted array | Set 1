@@ -1,83 +1,59 @@
-Plz read the entire theory from GeeksForGeeks All the methods give a read.
+https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-hashing-implementation/
+Another approach:In this problem, we have created a list full of 0’s with size of the max() value of our given array. Now, whenever we encounter any positive value in our original array, we change the index value of our list to 1. So, after we are done, we simply iterate through our modified list, the first 0 we encounter, its (index value + 1) should be our answer since index in python starts from 0.
 
+Below is the implementation of above approach:
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C++ implementation of the approach 
 #include <bits/stdc++.h> 
 using namespace std; 
   
-/* Utility to swap to integers */
-void swap(int *a, int *b)  
-{  
-    int temp;  
-    temp = *a;  
-    *a = *b;  
-    *b = temp;  
-}  
+// Function to return the first missing positive 
+// number from the given unsorted array 
+int firstMissingPos(int A[], int n) 
+{ 
   
-/* Utility function that puts all  
-non-positive (0 and negative) numbers on left  
-side of arr[] and return count of such numbers */
-int segregate (int arr[], int size)  
-{  
-    int j = 0, i;  
-    for(i = 0; i < size; i++)  
-    {  
-        if (arr[i] <= 0)  
-        {  
-            swap(&arr[i], &arr[j]);  
-            j++; // increment count of non-positive integers  
-        }  
-    }  
+    // To mark the occurrence of elements 
+    bool present[n + 1] = { false }; 
   
-    return j;  
-}  
+    // Mark the occurrences 
+    for (int i = 0; i < n; i++) { 
   
-/* Find the smallest positive missing number  
-in an array that contains all positive integers */
-int findMissingPositive(int arr[], int size)  
-{  
-    int i;  
-      
-    // Mark arr[i] as visited by making arr[arr[i] - 1] negative.  
-    // Note that 1 is subtracted because index start  
-    // from 0 and positive numbers start from 1  
-    for(i = 0; i < size; i++)  
-    {  
-        if(abs(arr[i]) - 1 < size && arr[ abs(arr[i]) - 1] > 0)  
-        arr[ abs(arr[i]) - 1] = -arr[ abs(arr[i]) - 1];  
-    }  
-      
-    // Return the first index value at which is positive  
-    for(i = 0; i < size; i++)  
-        if (arr[i] > 0)  
-            // 1 is added because indexes start from 0  
-            return i+1;  
-      
-    return size+1;  
-}  
+        // Only mark the required elements 
+        // All non-positive elements and 
+        // the elements greater n + 1 will never 
+        // be the answer 
+        // For example, the array will be {1, 2, 3} 
+        // in the worst case and the result 
+        // will be 4 which is n + 1 
+        if (A[i] > 0 && A[i] <= n) 
+            present[A[i]] = true; 
+    } 
   
-/* Find the smallest positive missing  
-number in an array that contains  
-both positive and negative integers */
-int findMissing(int arr[], int size)  
-{  
-    // First separate positive and negative numbers  
-    int shift = segregate (arr, size);  
-      
-    // Shift the array and call findMissingPositive for  
-    // positive part  
-    return findMissingPositive(arr + shift, size - shift);  
-}  
+    // Find the first element which didn't 
+    // appear in the original array 
+    for (int i = 1; i <= n; i++) 
+        if (!present[i]) 
+            return i; 
+  
+    // If the original array was of the 
+    // type {1, 2, 3} in its sorted form 
+    return n + 1; 
+} 
   
 // Driver code 
-int main()  
-{  
-    int arr[] = {0, 10, 2, -10, -20};  
-    int arr_size = sizeof(arr)/sizeof(arr[0]);  
-    int missing = findMissing(arr, arr_size);  
-    cout << "The smallest positive missing number is " << missing;  
-    return 0;  
-}  
+int main() 
+{ 
   
-// This is code is contributed by rathbhupendra 
-
+    int A[] = { 0, 10, 2, -10, -20 }; 
+    int size = sizeof(A) / sizeof(A[0]); 
+    cout << firstMissingPos(A, size); 
+} 
+  
+// This code is contributed by gp6 
 Output:
-The smallest positive missing number is 1 
+
+ 1 
