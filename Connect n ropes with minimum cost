@@ -62,3 +62,4 @@ int main ()
                             third (myints,myints+4);
   return 0;
 }
+time:0(n)
