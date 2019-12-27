@@ -1,5 +1,5 @@
 This solution is from TechieDelight
-
+Also refer https://www.geeksforgeeks.org/longest-sub-array-sum-k/
 
 #include <iostream>
 #include<unordered_map>
