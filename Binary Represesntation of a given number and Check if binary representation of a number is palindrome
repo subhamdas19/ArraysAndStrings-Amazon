@@ -1,5 +1,5 @@
 Refer the Notes for Binary Represesntation of a given number and then study the Check if binary representation of a number is palindrome
-
+https://www.interviewbit.com/problems/binary-representation/
 Algorithm:
 isPalindrome(x)
 1) Find number of bits in x using sizeof() operator.
