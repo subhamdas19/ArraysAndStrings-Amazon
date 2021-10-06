@@ -1,5 +1,11 @@
 
 This soln is from techie delight
+
+https://www.techiedelight.com/find-subarrays-given-sum-array/
+
+
+
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
