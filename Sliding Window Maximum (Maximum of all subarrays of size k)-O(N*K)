@@ -62,7 +62,10 @@ class GFG {
 
 
 
-
+    Time Complexity: O(N * Log k). 
+    Insertion, deletion and search takes log k time in a AVL tree. So the overall time Complexity is O(N * log k)
+    Space Complexity: O(k). 
+    The space required to store k elements in a BST is O(k).
 
 
 
