@@ -1,3 +1,77 @@
+// Java program for the above approach
+
+Time Complexity: O(N) 
+
+Space Complexity: O(1)
+
+
+import java.util.*;
+Alternate Implementation:
+
+    Using two pointers i and j , i will point index 0 and j will point the last index.
+    Run a while loop; if a[i] is odd and a[j] is even then we will swap them else we will decrement j.
+    
+    
+class GFG{
+
+// Function to segregate
+static void segregate(int a[], int n)
+{
+	int i = 0, j = (n - 1);
+
+	// Iterate while j >= i
+	while (j >= i)
+	{
+		
+		// Check is a[i] is even
+		// or odd
+		if (a[i] % 2 != 0)
+		{
+			if (a[j] % 2 == 0)
+			{
+				
+				// Swap a[i] and a[j]
+				a = swap(a, i, j);
+				i++;
+				j--;
+			}
+			else
+				j--;
+		}
+		else
+			i++;
+	}
+
+	for(i = 0; i < n; i++)
+		System.out.print(a[i] + " ");
+}
+
+static int[] swap(int []arr, int i, int j)
+{
+	int temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
+	return arr;
+}
+
+// Driver Code
+public static void main(String[] args)
+{
+	int a[] = { 1, 2, 3, 4, 5, 6 };
+	int n = a.length;
+
+	// Function Call
+	segregate(a, n);
+}
+}
+
+// This code is contributed by 29AjayKumar
+
+
+
+
+
+
 Alternate Implementation (Lomuto partition): 
 filter_none
 edit
